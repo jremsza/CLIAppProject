@@ -1,40 +1,40 @@
-Column: value
+value
 Minimum: 14999.00
 Maximum: 500001.00
 Mean: 206855.82
 Median: 179700.00
 
-Column: income
+income
 Minimum: 0.50
 Maximum: 15.00
 Mean: 3.87
 Median: 3.53
 
-Column: age
+age
 Minimum: 1.00
 Maximum: 52.00
 Mean: 28.64
 Median: 29.00
 
-Column: rooms
+rooms
 Minimum: 2.00
 Maximum: 39320.00
 Mean: 2635.76
 Median: 2127.00
 
-Column: bedrooms
+bedrooms
 Minimum: 1.00
 Maximum: 6445.00
 Mean: 537.90
 Median: 435.00
 
-Column: pop
+pop
 Minimum: 3.00
 Maximum: 35682.00
 Mean: 1425.48
 Median: 1166.00
 
-Column: hh
+hh
 Minimum: 1.00
 Maximum: 6082.00
 Mean: 499.54

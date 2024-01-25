@@ -5,11 +5,15 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/montanaflynn/stats"
 )
 
 func main() {
+	//start timing
+	start := time.Now()
+
 	//open CSV file
 	file, err := os.Open("housesInput.csv")
 	if err != nil {
@@ -69,11 +73,14 @@ func main() {
 		//fmt.Printf("Column %d: min=%v, max=%v, mean=%v, median=%v\n", i+1, min, max, mean, median)
 
 		//output the results
-		outputString := fmt.Sprintf("Column: %s\nMinimum: %.2f\nMaximum: %.2f\nMean: %.2f\nMedian: %.2f\n\n", headers[i], min, max, mean, median)
+		outputString := fmt.Sprintf("%s\nMinimum: %.2f\nMaximum: %.2f\nMean: %.2f\nMedian: %.2f\n\n", headers[i], min, max, mean, median)
 		_, err := output.WriteString(outputString)
 		if err != nil {
 			fmt.Println("Error writing output:", err)
 			return
 		}
 	}
+	//calculate and print the elapsed time
+	elapsed := time.Since(start)
+	fmt.Printf("Execution time: %s\n", elapsed)
 }
