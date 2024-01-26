@@ -5,17 +5,14 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-	"time"
 
 	"github.com/montanaflynn/stats"
 )
 
-func main() {
-	//start timing
-	start := time.Now()
+func processFile(filename string) {
 
 	//open CSV file
-	file, err := os.Open("housesInput.csv")
+	file, err := os.Open(filename)
 	if err != nil {
 		fmt.Println("Error opening file", err)
 		return
@@ -55,32 +52,39 @@ func main() {
 			data[i] = append(data[i], num)
 		}
 	}
-	//create a new file for output
-	output, err := os.Create("housesOutputGo.txt")
+	//create a new file for output - include flag to append to the file if it already exists
+	output, err := os.OpenFile("housesOutputGo.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
-		fmt.Println("Error creating output file:", err)
+		fmt.Println("Error opening output file:", err)
 		return
 	}
+
 	defer output.Close()
 
 	// Compute and print statistics for each column
 	for i, columnData := range data {
 		min, _ := stats.Min(columnData)
-		max, _ := stats.Max(columnData)
+		sd, _ := stats.StandardDeviation(columnData)
 		mean, _ := stats.Mean(columnData)
 		median, _ := stats.Median(columnData)
-
-		//fmt.Printf("Column %d: min=%v, max=%v, mean=%v, median=%v\n", i+1, min, max, mean, median)
+		max, _ := stats.Max(columnData)
 
 		//output the results
-		outputString := fmt.Sprintf("%s\nMinimum: %.2f\nMaximum: %.2f\nMean: %.2f\nMedian: %.2f\n\n", headers[i], min, max, mean, median)
+		outputString := fmt.Sprintf("%s\nMinimum: %.2f\nStDev: %.2f\nMean: %.2f\nMedian: %.2f\nMaximum: %.2f\n\n", headers[i], min, sd, mean, median, max)
 		_, err := output.WriteString(outputString)
 		if err != nil {
 			fmt.Println("Error writing output:", err)
 			return
 		}
 	}
-	//calculate and print the elapsed time
-	elapsed := time.Since(start)
-	fmt.Printf("Execution time: %s\n", elapsed)
+}
+
+func main() {
+
+	filename := "housesInput.csv"
+
+	// Run processFile 100 times
+	for i := 0; i < 100; i++ {
+		processFile(filename)
+	}
 }
