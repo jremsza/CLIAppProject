@@ -26,10 +26,17 @@ func TestProcessFile(t *testing.T) {
 	// Close the file
 	file.Close()
 
-	// Call the processFile function
-	processFile(file.Name())
+	// Create a temporary output file
+	output, err := os.CreateTemp("", "output.txt")
+	if err != nil {
+		t.Fatalf("Failed to create temporary output file: %v", err)
+	}
+	defer os.Remove(output.Name())
 
-	// Example assertion:
+	// Call the processFile function
+	processFile(file.Name(), output)
+
+	// Test the  average is correct
 	expectedResult := 3.0
 	actualResult := calculateAvg(data)
 	if actualResult != expectedResult {
@@ -37,6 +44,7 @@ func TestProcessFile(t *testing.T) {
 	}
 }
 
+// Test stats.Mean is giving the right result
 func calculateAvg(data []string) float64 {
 	numbers := make([]float64, len(data))
 	for i, str := range data {

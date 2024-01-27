@@ -8,16 +8,21 @@ please provide us feedback at https://github.com/pandas-dev/pandas/issues/54466
         
   import pandas as pd
 
-real	0m3.053s
-user	0m0.015s
+real	0m3.098s
+user	0m0.000s
 sys	0m0.000s
 R Script Execution Time:
 
-real	0m5.732s
+real	0m5.730s
 user	0m0.000s
 sys	0m0.000s
 Go Program Execution Time:
 
-real	0m2.698s
+real	0m2.677s
 user	0m0.000s
 sys	0m0.015s
+Go Program Execution Time:
+
+real	0m2.681s
+user	0m0.000s
+sys	0m0.000s
