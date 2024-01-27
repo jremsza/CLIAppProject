@@ -30,14 +30,14 @@ func TestProcessFile(t *testing.T) {
 	processFile(file.Name())
 
 	// Example assertion:
-	expectedResult := 15.0
-	actualResult := calculateSum(data)
+	expectedResult := 3.0
+	actualResult := calculateAvg(data)
 	if actualResult != expectedResult {
 		t.Errorf("Expected sum to be %f, but got %f", expectedResult, actualResult)
 	}
 }
 
-func calculateSum(data []string) float64 {
+func calculateAvg(data []string) float64 {
 	numbers := make([]float64, len(data))
 	for i, str := range data {
 		num, err := strconv.ParseFloat(str, 64)
@@ -46,6 +46,6 @@ func calculateSum(data []string) float64 {
 		}
 		numbers[i] = num
 	}
-	sum, _ := stats.Sum(numbers)
-	return sum
+	avg, _ := stats.Mean(numbers)
+	return avg
 }
