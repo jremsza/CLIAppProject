@@ -12,15 +12,15 @@ This CLI application is written in Go and is designed to analyze summary statist
 # Use Instructions
 1. Open a bash terminal
 
-2. Navigate to the directory that holds the statsCLI executable from the command line. 
+2. Navigate to the directory that holds the statscli executable from the command line. 
 
 3. The bash command to run the script is as follows:
 
-./statsCLI -input "path\to\dataset\theDataset.csv" -output "path\to\dataset\dataOutput.txt"
+./statscli -input "path\to\dataset\theDataset.csv" -output "path\to\dataset\dataOutput.txt"
 
 It is recomended that the user has the app executable, the data file and the output in the same directory to avoid adding a path, but is not nessecary.
 
-For example: ./statsCLI -input "housesInput.csv" -output "dataOutput.txt" would all be in the same directory and run without issue.
+For example: ./statscli -input "housesInput.csv" -output "dataOutput.txt" would all be in the same directory and run without issue.
 
 # Summary for Managment
 
