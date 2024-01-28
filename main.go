@@ -82,11 +82,23 @@ func main() {
 	outputFilename := flag.String("output", "housesOutputGo.txt", "The name of the output file")
 	flag.Parse()
 
-	output, err := os.OpenFile(*outputFilename, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		fmt.Println("Error opening output file:", err)
+	// Check if the input file exists and is readable
+	if _, err := os.Stat(*inputFilename); err != nil {
+		if os.IsNotExist(err) {
+			fmt.Println("Error: Input file does not exist.")
+		} else {
+			fmt.Println("Error: Unable to read input file. Unsure the file is .csv format.")
+		}
 		return
 	}
+
+	// Check if the output file is writable
+	output, err := os.OpenFile(*outputFilename, os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		fmt.Println("Error: Unable to write to output file.")
+		return
+	}
+
 	defer output.Close()
 
 	for i := 0; i < 100; i++ {
